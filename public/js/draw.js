@@ -49,8 +49,10 @@ img.src = local_data[0].canvas.canvas;
     App.ctx.lineWidth = 5;
     App.ctx.lineCap = "round";
      //App.socket = io.connect('http://localhost:4000');
-     App.socket = io.connect('https://thawing-fortress-97561.herokuapp.com:4000');
+     //App.socket = io.connect('https://thawing-fortress-97561.herokuapp.com:4000');
+     App.socket = io();
      
+     console.log(App)
      
     //App.socket = io.connect('https://community-draw.herokuapp.com:4000');
     App.socket.on('draw', function(data) {

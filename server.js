@@ -79,7 +79,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 
-
+/*
 (function() {
   console.log('adf')
   var io;
@@ -114,8 +114,10 @@ app.set('view engine', 'jade');
 
 
 
-}).call(this);
 
+}).call(this);
+*/
+const socketIO = require('socket.io');
 
 function doStuff(data, id) {
 
@@ -164,6 +166,44 @@ function runServer() {
       }
       server = app.listen(PORT, () => {
         console.log(`Your app is listening on port ${PORT}`);
+	
+	const io = socketIO(server);
+
+
+//(function() {
+  console.log('adf')
+  //var io;
+  var timer = null;
+  var data = null; 
+  var id = null;	 
+
+  //io = require('socket.io').listen(4000);
+  io.on('connection', function(socket) {
+	  
+    socket.on('drawClick', function(data) {
+	console.log('dataid')
+
+	console.log(data.canvasId)
+      data = data;
+      
+      id=data.canvasId; 	 
+	 
+
+      clearTimeout(timer);
+      timer = setTimeout(function() { console.log('in fun ' +id); doStuff(data, id)} , 1000)
+
+      socket.broadcast.emit('draw', {
+        x: data.x,
+        y: data.y,
+        type: data.type
+      });
+    });
+  });
+
+
+
+
+
         resolve();
       })
       .on('error', err => {
