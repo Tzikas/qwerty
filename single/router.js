@@ -37,7 +37,7 @@ router.get('/canvas/:id', function(req, res, next) {
 		//console.log(r);
 		//res.render('canvas', { canvas: r[0].canvas}); for editing? 
 		var data = r;
-		res.render('canvas',{title:'ew', canvas:data})
+		res.render('canvas',{title:'draw', canvas:data})
 	
 	})
 

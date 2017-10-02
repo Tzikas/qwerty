@@ -4,10 +4,13 @@
 
 canvas{
   background:white;
-  width: 100%;
   margin: 10px 0;
-}
 
+}
+img{
+	width:100%;
+	max-width:800px;
+}
 body{
   background: #eee;
   /*padding: 50px;*/
